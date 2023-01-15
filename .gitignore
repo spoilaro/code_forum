@@ -4,3 +4,5 @@
 **/build/
 packages/config/index.js
 
+.env
+

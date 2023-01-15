@@ -4,10 +4,11 @@
 drop table if exists posts;
 
 create table posts (
-  post_id int(4) not null primary key,
+  post_id integer not null primary key autoincrement,
   post_name varchar(30) not null,
   user_id int(4),
-  created timestamp not null,
+  created timestamp default (datetime('now')),
+  body text,
 
   foreign key(user_id) references users(user_id)
 );

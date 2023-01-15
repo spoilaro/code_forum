@@ -1,6 +1,8 @@
 import express, { Express, Request, Response, NextFunction } from "express";
-import sqlite3 from "sqlite3";
 import * as dotenv from "dotenv";
+
+// Route imports
+import postRouter from "./routes/posts";
 
 // Using same .env file for the whole project
 dotenv.config({
@@ -12,6 +14,9 @@ const app: Express = express();
 
 // Middleware
 app.use(express.json());
+
+// Routes
+app.use("/posts", postRouter);
 
 app.get("/api/test", (req: Request, res: Response) => {
   res.json({
