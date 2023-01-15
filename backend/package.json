@@ -9,11 +9,13 @@
     "start": "node build/index.js"
   },
   "dependencies": {
-    "@code_forum/config": "1.0.0",
-    "express": "^4.18.2"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
   }
 }
