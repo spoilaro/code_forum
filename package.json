@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "code_forum",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "packages/*"
+  ]
+}
