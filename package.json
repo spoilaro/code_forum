@@ -10,6 +10,7 @@
     "packages/*"
   ],
   "scripts": {
-    "bg_dev": "yarn --cwd backend dev"
+    "bg_dev": "NODE_ENV=development yarn --cwd backend dev",
+    "front_dev": "NODE_ENV=development yarn --cwd frontend start"
   }
 }
