@@ -9,6 +9,7 @@ create table posts (
   user_id int(4),
   created timestamp default (datetime('now')),
   body text,
+  likes int(4),
 
   foreign key(user_id) references users(user_id)
 );

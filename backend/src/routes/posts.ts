@@ -13,6 +13,12 @@ postRouter.get("/list", async (req: Request, res: Response) => {
   `;
 
   db.all(query, (err, rows) => {
+    if (err) {
+      res.json({
+        error: err,
+      });
+    }
+
     res.json({
       rows: rows,
     });
@@ -46,6 +52,29 @@ postRouter.post("/new", async (req: Request, res: Response) => {
         msg: "INSERT SUCCESS",
       });
     }
+  });
+});
+
+postRouter.get("/find", (req: Request, res: Response) => {
+  const query = `
+    select
+      *
+    from
+      posts
+    where
+      post_id = ?;
+  `;
+
+  db.all(query, [req.query.id], (err, rows) => {
+    if (err) {
+      res.json({
+        error: err,
+      });
+    }
+
+    res.json({
+      rows: rows,
+    });
   });
 });
 

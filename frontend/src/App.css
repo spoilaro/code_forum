@@ -1,15 +1,22 @@
+.App {
+  height: 100vh;
+}
 #navbar {
   background-color: red;
 }
 
 #main {
   padding: 1.5rem;
+  background-color: orange;
 }
 
 #posts {
   background-color: blue;
+  height: 100%;
 }
 
 .post-preview {
   padding: 1em;
+  background-color: green;
+  margin-top: 1rem;
 }

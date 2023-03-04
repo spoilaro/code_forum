@@ -11,6 +11,6 @@
   ],
   "scripts": {
     "bg_dev": "NODE_ENV=development yarn --cwd backend dev",
-    "front_dev": "NODE_ENV=development yarn --cwd frontend start"
+    "front_dev": "BROWSER=none NODE_ENV=development yarn --cwd frontend start"
   }
 }
