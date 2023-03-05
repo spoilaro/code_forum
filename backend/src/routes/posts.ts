@@ -29,7 +29,7 @@ postRouter.post("/new", async (req: Request, res: Response) => {
   // Insert a new post
 
   const user_id = req.body.user_id;
-  const snippet = req.body.snippet;
+  const body = req.body.body;
   const post_name = req.body.post_name;
 
   const query = `
@@ -42,7 +42,7 @@ postRouter.post("/new", async (req: Request, res: Response) => {
     )
   `;
 
-  db.run(query, [post_name, user_id, snippet], (err) => {
+  db.run(query, [post_name, user_id, body], (err) => {
     if (err) {
       res.json({
         msg: "INSERT FAILED",
@@ -75,6 +75,31 @@ postRouter.get("/find", (req: Request, res: Response) => {
     res.json({
       rows: rows,
     });
+  });
+});
+
+postRouter.post("/like", (req: Request, res: Response) => {
+  const post_id = req.body.id;
+
+  console.log(post_id);
+  const query = `
+    update posts
+    set
+    likes = likes + 1
+    where 
+    post_id = ?
+  `;
+
+  db.run(query, [post_id], (err) => {
+    if (err) {
+      res.json({
+        error: err,
+      });
+    } else {
+      res.json({
+        msg: "SUCCESS",
+      });
+    }
   });
 });
 

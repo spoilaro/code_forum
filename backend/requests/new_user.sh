@@ -1,3 +1,4 @@
 
 http POST localhost:3100/users/register \
-    email="test@test.com" \
+    email="test2@test.com" \
+    password="test"

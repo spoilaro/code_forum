@@ -5,6 +5,7 @@ import cors from "cors";
 // Route imports
 import postRouter from "./routes/posts";
 import userRouter from "./routes/users";
+import commentRouter from "./routes/comments";
 
 // Using same .env file for the whole project
 dotenv.config({
@@ -29,6 +30,7 @@ app.use(express.json());
 // Routes
 app.use("/posts", postRouter);
 app.use("/users", userRouter);
+app.use("/comments", commentRouter);
 
 app.get("/api/test", (req: Request, res: Response) => {
   res.json({
