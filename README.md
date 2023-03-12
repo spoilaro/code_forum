@@ -2,6 +2,8 @@
 
 ## Installing & Running
 
+For the project to work `.env` file needs to be set up in the project root. The example can be found from `env-example`
+
 ```
 // Backend
 
@@ -13,15 +15,20 @@ yarn/npm install
 cd frontend/
 yarn/npm install
 
-// Database
+// Database (this is optional, use if clean slate is wanted)
 cd database/
 ./build.sh
 
 // Running (at repository root!)
+// Note: backend needs to be turned on first
 
 npm run bg_dev // In one terminal
 npm run front_dev // In another terminal
 ```
+
+## Database
+
+Database for the project can be found from `/database` directory. The directory contains a script `build.sh` if the developer wants to create a clean slate.
 
 ## Technology choices
 
