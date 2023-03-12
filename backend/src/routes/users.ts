@@ -32,37 +32,50 @@ userRouter.post("/register", async (req: Request, res: Response) => {
     } else {
       res.json({
         msg: "INSERT SUCCESS",
+        status: true,
       });
     }
   });
 });
 
-userRouter.post("/login", async (req: Request, res: Response) => {
+userRouter.post("/login", (req: Request, res: Response) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  const hash = bcrypt.hashSync(password, 8);
+  console.log(email);
 
   const query = `
-    select * from users
-    where
-      email = ?
-    and
-      password = ?
+    SELECT
+      user_id, email, password 
+    FROM 
+      users
+    WHERE
+      email like ?
   `;
 
-  db.get(query, [email, hash], (err, rows) => {
+  db.get(query, [email], (err, rows) => {
+    console.log(rows);
     if (err) {
       res.json({
         msg: "LOGIN FAILED",
         error: err,
       });
     } else {
+      if (
+        rows === undefined ||
+        !bcrypt.compareSync(password, rows["password"])
+      ) {
+        console.log(rows);
+        res.json({
+          success: false,
+        });
+      }
+
       const jwtPayload = {
         email,
-        hash,
         rows,
       };
+
       jwt.sign(
         jwtPayload,
         "TEST_SECRET",

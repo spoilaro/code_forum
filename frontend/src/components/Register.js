@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import { useState } from "react";
 
-const Login = ({ tokenHandler, userHandler }) => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -33,10 +33,10 @@ const Login = ({ tokenHandler, userHandler }) => {
       password,
     };
 
-    console.log("Logging");
+    console.log("Registering");
     console.log(data);
 
-    const res = await fetch("http://localhost:3100/users/login", {
+    const res = await fetch("http://localhost:3100/users/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,15 +45,11 @@ const Login = ({ tokenHandler, userHandler }) => {
     });
     const res_data = await res.json();
 
-    if (res_data.success) {
-      tokenHandler(res_data.token);
-
-      userHandler(res_data.rows.user_id);
-
-      console.log("LOGIN SUCCESS");
-      navigate("/");
+    if (res_data.status) {
+      console.log("REGISTER SUCCESS");
+      navigate("/login");
     } else {
-      console.log("LOGIN FAILED");
+      console.log("REGISTER FAILED");
     }
 
     console.log(res_data);
@@ -61,7 +57,7 @@ const Login = ({ tokenHandler, userHandler }) => {
 
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Register</h1>
       <form>
         <input onChange={emailChange} type="text" name="email" value={email} />
         <input
@@ -76,4 +72,4 @@ const Login = ({ tokenHandler, userHandler }) => {
   );
 };
 
-export default Login;
+export default Register;

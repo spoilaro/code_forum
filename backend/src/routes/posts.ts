@@ -30,7 +30,11 @@ postRouter.post("/new", async (req: Request, res: Response) => {
 
   const user_id = req.body.user_id;
   const body = req.body.body;
-  const post_name = req.body.post_name;
+  const post_name = req.body.name;
+
+  console.log(user_id);
+  console.log(body);
+  console.log(post_name);
 
   const query = `
     insert into posts (

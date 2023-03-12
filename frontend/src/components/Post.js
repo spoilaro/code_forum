@@ -94,8 +94,8 @@ const Post = ({ token }) => {
       {token ? <button onClick={likePost}>Like</button> : ""}
       <h3>{post.post_name}</h3>
       <p>Likes: {post.likes}</p>
-      <p>{post.body}</p>
-      <p>{state.id}</p>
+      <kbd>{post.body}</kbd>
+      {/* <p>{state.id}</p> */}
 
       <div id="comment-section">
         {token ? (
