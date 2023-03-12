@@ -31,7 +31,8 @@ const PreviewList = ({ posts, postHandler, user }) => {
 
   return (
     <div id="posts">
-      <NewPost user={user} />
+      {user ? <NewPost user={user} /> : ""}
+      {!user ? <Link to="/login">Login</Link> : ""}
       {previews}
     </div>
   );

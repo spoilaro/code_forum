@@ -72,6 +72,7 @@ const Login = ({ tokenHandler, userHandler }) => {
         />
         <input onClick={handleLogin} type="button" name="login" value="Login" />
       </form>
+      <Link to="/register">Register</Link>
     </div>
   );
 };
