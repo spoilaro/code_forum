@@ -6,11 +6,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Post from "./components/Post";
 import PreviewList from "./components/PreviewList";
+import Login from "./components/Login";
 
 import { get_post_previews } from "./request_handles";
 
 function App() {
   const [previews, setPreviews] = useState([]);
+  const [token, setToken] = useState(null);
+
+  const updateToken = (token) => {
+    setToken(token);
+  };
 
   useEffect(() => {
     const fetch_data = async () => {
@@ -29,7 +35,11 @@ function App() {
         <div id="main">
           <Routes>
             <Route path="/" element={<PreviewList posts={previews} />} />
-            <Route path="/post" element={<Post />} />
+            <Route path="/post" element={<Post token={token} />} />
+            <Route
+              path="/login"
+              element={<Login tokenHandler={updateToken} />}
+            />
           </Routes>
         </div>
       </BrowserRouter>

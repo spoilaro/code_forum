@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const Post = () => {
+const Post = ({ token }) => {
   const { state } = useLocation();
   const [post, setPost] = useState({});
   const [likes, setLikes] = useState(0);
@@ -46,6 +46,7 @@ const Post = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         post_id: post.post_id,
@@ -90,22 +91,30 @@ const Post = () => {
   return (
     <div>
       <button onClick={navBack}>Back</button>
-      <button onClick={likePost}>Like</button>
+      {token ? <button onClick={likePost}>Like</button> : ""}
       <h3>{post.post_name}</h3>
       <p>Likes: {post.likes}</p>
       <p>{post.body}</p>
       <p>{state.id}</p>
 
       <div id="comment-section">
-        <input
-          type="text"
-          name="comment-field"
-          onChange={commentHandler}
-          value={commentField}
-        ></input>
-        <button onClick={postComment} type="button">
-          Post Comment
-        </button>
+        {token ? (
+          <input
+            type="text"
+            name="comment-field"
+            onChange={commentHandler}
+            value={commentField}
+          ></input>
+        ) : (
+          ""
+        )}
+        {token ? (
+          <button onClick={postComment} type="button">
+            Post Comment
+          </button>
+        ) : (
+          ""
+        )}
 
         <CommentList comments={comments} />
       </div>
