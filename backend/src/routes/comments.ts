@@ -31,6 +31,8 @@ commentRouter.get("/list", async (req: Request, res: Response) => {
 
 commentRouter.post("/new", validate, async (req: Request, res: Response) => {
   // Insert a new post
+  //
+  console.log("NEW COMMENT");
 
   const post_id = req.body.post_id;
   const user_id = req.body.user_id;
